@@ -1,37 +1,24 @@
 import os
+import threading
 from flask import Flask
-from threading import Thread
 
+# 1. إنشاء سيرفر وهمي لإبقاء Koyeb سعيداً
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "Bot is running!"
+    return "Bot is running and healthy!"
 
-def run_server():
-    # المنصة ستعطي البورت تلقائياً عبر متغير PORT
+def run_flask():
+    # جلب البورت من Koyeb أو استخدام 8000 كافتراضي
     port = int(os.environ.get("PORT", 8000))
     app.run(host='0.0.0.0', port=port)
 
-# تشغيل السيرفر في خلفية البوت
-Thread(target=run_server).start()
+# 2. تشغيل السيرفر في خلفية منفصلة (Thread)
+flask_thread = threading.Thread(target=run_flask)
+flask_thread.start()
 
-# الآن يبدأ كود البوت الأصلي الخاص بك بالأسفل...
-
-import threading
-import os
-
-def run_script(script_name):
-    os.system(f'python3 {script_name}')
-
-scripts = []
-
-threads = []
-for script in scripts:
-    thread = threading.Thread(target=run_script, args=(script,))
-    thread.start()
-    threads.append(thread)
-
-for thread in threads:
-    thread.join()
-
+# 3. تشغيل ملف البوت الأساسي فوراً
+print("--- Starting Telegram Bot ---")
+# هذا الأمر سيقوم بتشغيل الملف الذي يحتوي على اتصال Telethon
+os.system("python3 ze-telethon-cl.py")
