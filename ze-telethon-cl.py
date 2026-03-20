@@ -109,6 +109,7 @@ async def start(event):
     sender = await event.get_sender()
     if sender.id == DEVELOPER_ID:
         chat = await event.get_chat()
+        # قائمة الأزرار بتنسيق التحديث الجديد API 9.4
         buttons = [
             [
                 Button.inline('➕ إضافة رقـم', 'button1', color='blue'), 
@@ -137,12 +138,12 @@ async def start(event):
                 Button.inline('🤖 تفعيل بوت', 'button8', color='blue')
             ],
             [
-                Button.inline('📢😂 رشق قناة', 'buttton311', color='blue'), 
-                Button.inline('🚶😂 مغادرة قناة', 'buttton251', color='red')
+                Button.inline('📢 رشق قناة', 'buttton311', color='blue'), 
+                Button.inline('🚶 مغادرة قناة', 'buttton251', color='red')
             ],
             [Button.inline('👁️ رشق مشاهدات', 'buttonn511', color='blue')],
             [
-                Button.inline('🕹️😂 تحكم خاص', 'btp', color='gray'), 
+                Button.inline('🕹️ تحكم خاص', 'btp', color='gray'), 
                 Button.inline('🔍 فحص الحسابات', 'tst', color='gray')
             ],
             [
@@ -154,12 +155,12 @@ async def start(event):
                 Button.inline('🔢 عدد الحسابات', "bbuttoon08", color='indigo')
             ],
             [Button.inline('⚠️ مسح بيانات البوت ⚠️', 'format', color='red')],
-            [Button.inline('༺ قاسـم 👨🏼‍💻༻', 'button0', color='gold')]
+            [Button.inline('༺قاسـم 👨🏼‍💻༻', 'button0', color='gold')]
         ]
-        
-        await bot.send_message(chat, '''**──╮╭─
-╭─╯│┈
-╰──╰─**''', buttons=buttons)
+
+        # إرسال القائمة المحدثة
+        await bot.send_message(chat, '''**تـم تـحديث الـقائمة بـنجاح ✅
+إصـدار الـبوت: API 9.4**''', buttons=buttons)
 
 
 
