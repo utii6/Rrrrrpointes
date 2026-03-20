@@ -112,34 +112,34 @@ async def start(event):
         # قائمة الأزرار بتنسيق التحديث الجديد API 9.4
         buttons = [
             [
-                Button.inline('➕ إضافة رقـم', 'button1'), 
-                Button.inline('🗑️ حـذف رقـم', 'delete')
+                Button.inline('➕ إضافة رقـم', 'button1', style='primary'), 
+                Button.inline('🗑️ حـذف رقـم', 'delete', style='danger')
             ],
             [Button.inline('⚙️ تعيين البوت الأساسي', 'ububo')],
             [
-                Button.inline('▶️ بــــدء التجميع', 'button3'), 
-                Button.inline('⏹️ إيقاف التجميع', 'button4')
+                Button.inline('▶️ بــــدء التجميع', 'button3', style='success'), 
+                Button.inline('⏹️ إيقاف التجميع', 'button4', style='danger')
             ],
             [
                 Button.inline('💸 تحويل النقاط', 'button5'), 
                 Button.inline('📊 عـدد النقاط', 'button6')
             ],
             [
-                Button.inline('🔓 فك الحظر', 'unblock'), 
-                Button.inline('🚫 حظر البوت', 'button21')
+                Button.inline('🔓 فك الحظر', 'unblock', style='success'), 
+                Button.inline('🚫 حظر البوت', 'button21', style='danger')
             ],
             [
                 Button.inline('🧹 مغادرة القنوات', 'buttton11'), 
                 Button.inline('🎁 الهدية اليومية', 'a6gi2ft')
             ],
-            [Button.inline('✨ بوت دعمكم المطور', 'da3mkom')],
+            [Button.inline('✨ بوت دعمكم المطور', 'da3mkom', style='primary')],
             [
                 Button.inline('🗳️ رشق تصويت', 'button7'), 
                 Button.inline('🤖 تفعيل بوت', 'button8')
             ],
             [
                 Button.inline('📢 رشق قناة', 'buttton311'), 
-                Button.inline('🚶 مغادرة قناة', 'buttton251')
+                Button.inline('🚶 مغادرة قناة', 'buttton251', style='danger')
             ],
             [Button.inline('👁️ رشق مشاهدات', 'buttonn511')],
             [
@@ -154,11 +154,11 @@ async def start(event):
                 Button.inline('🖱️ نقر زر شفاف', 'ba4utt2on'), 
                 Button.inline('🔢 عدد الحسابات', "bbuttoon08")
             ],
-            [Button.inline('⚠️ مسح بيانات البوت ⚠️', 'format')],
-            [Button.inline('༺قاسـم 👨🏼‍💻 ༻', 'button0')]
+            [Button.inline('⚠️ مسح بيانات البوت ⚠️', 'format', style='danger')],
+            [Button.inline('༺ قاسـم 👨🏼‍💻 ༻', 'button0', style='primary')]
         ]
 
-        await bot.send_message(chat, "**تـم تشغيل التحكم بنجاح ✅**", buttons=buttons)
+        await bot.send_message(chat, "**هلا بالسلطان الوالي:**", buttons=buttons)
 
 
 @bot.on(events.CallbackQuery(pattern='da3mkom'))
