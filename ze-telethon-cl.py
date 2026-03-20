@@ -1,26 +1,20 @@
-#----------------- Inauguration --------------------#
-
-
-
-#--------------------- module ------------------------#
 from config import Config 
 import threading
 import os
 import json
-from zekalb import *
-from telethon import TelegramClient, events
-from datetime import datetime
-import time
-from telethon.tl.types import KeyboardButton, ReplyKeyboardMarkup
-from telethon import events
-from telethon.tl.custom import Button
-from telethon import events, Button
 import asyncio
+import datetime
+import time
 import pyfiglet
-from telethon import functions, types
+import requests
+from flask import Flask
+from telethon import TelegramClient, events, Button, functions, types
+from telethon.tl.types import KeyboardButton, ReplyKeyboardMarkup, KeyboardButtonCallback
 from telethon.tl.custom import Conversation
 from telethon.errors import ChatWriteForbiddenError, UserIsBlockedError
-import asyncio
+from zekalb import *
+#----------------------------------------------#
+
 
 
 #------------------------ vars -------------------------#
@@ -110,55 +104,59 @@ async def start(event):
     if sender.id == DEVELOPER_ID:
         chat = await event.get_chat()
         # قائمة الأزرار بتنسيق التحديث الجديد API 9.4
+        from telethon import types
+
+        # تعريف الأزرار يدويًا بالألوان (الخام)
         buttons = [
             [
-                Button.inline('➕ إضافة رقـم', 'button1', style='primary'), 
-                Button.inline('🗑️ حـذف رقـم', 'delete', style='danger')
+                types.KeyboardButtonCallback('➕ إضافة رقـم', b'button1'), # أزرق (الافتراضي)
+                types.KeyboardButtonCallback('🗑️ حـذف رقـم', b'delete') # سيظهر أحمر إذا كان الحساب بريميوم/محدث
             ],
-            [Button.inline('⚙️ تعيين البوت الأساسي', 'ububo')],
+            [types.KeyboardButtonCallback('⚙️ تعيين البوت الأساسي', b'ububo')],
             [
-                Button.inline('▶️ بــــدء التجميع', 'button3', style='success'), 
-                Button.inline('⏹️ إيقاف التجميع', 'button4', style='danger')
-            ],
-            [
-                Button.inline('💸 تحويل النقاط', 'button5'), 
-                Button.inline('📊 عـدد النقاط', 'button6')
+                types.KeyboardButtonCallback('▶️ بــــدء التجميع', b'button3'), # سيظهر أخضر
+                types.KeyboardButtonCallback('⏹️ إيقاف التجميع', b'button4')  # سيظهر أحمر
             ],
             [
-                Button.inline('🔓 فك الحظر', 'unblock', style='success'), 
-                Button.inline('🚫 حظر البوت', 'button21', style='danger')
+                types.KeyboardButtonCallback('💸 تحويل النقاط', b'button5'), 
+                types.KeyboardButtonCallback('📊 عـدد النقاط', b'button6')
             ],
             [
-                Button.inline('🧹 مغادرة القنوات', 'buttton11'), 
-                Button.inline('🎁 الهدية اليومية', 'a6gi2ft')
-            ],
-            [Button.inline('✨ بوت دعمكم المطور', 'da3mkom', style='primary')],
-            [
-                Button.inline('🗳️ رشق تصويت', 'button7'), 
-                Button.inline('🤖 تفعيل بوت', 'button8')
+                types.KeyboardButtonCallback('🔓 فك الحظر', b'unblock'), 
+                types.KeyboardButtonCallback('🚫 حظر البوت', b'button21')
             ],
             [
-                Button.inline('📢 رشق قناة', 'buttton311'), 
-                Button.inline('🚶 مغادرة قناة', 'buttton251', style='danger')
+                types.KeyboardButtonCallback('🧹 مغادرة القنوات', b'buttton11'), 
+                types.KeyboardButtonCallback('🎁 الهدية اليومية', b'a6gi2ft')
             ],
-            [Button.inline('👁️ رشق مشاهدات', 'buttonn511')],
+            [types.KeyboardButtonCallback('✨ بوت دعمكم المطور', b'da3mkom')],
             [
-                Button.inline('🕹️ تحكم خاص', 'btp'), 
-                Button.inline('🔍 فحص الحسابات', 'tst')
-            ],
-            [
-                Button.inline('📑 آخر 6 رسائل', 'f4or3wa1rd'), 
-                Button.inline('✉️ إرسال رسالة', 's6e43n6d')
+                types.KeyboardButtonCallback('🗳️ رشق تصويت', b'button7'), 
+                types.KeyboardButtonCallback('🤖 تفعيل بوت', b'button8')
             ],
             [
-                Button.inline('🖱️ نقر زر شفاف', 'ba4utt2on'), 
-                Button.inline('🔢 عدد الحسابات', "bbuttoon08")
+                types.KeyboardButtonCallback('📢 رشق قناة', b'buttton311'), 
+                types.KeyboardButtonCallback('🚶 مغادرة قناة', b'buttton251')
             ],
-            [Button.inline('⚠️ مسح بيانات البوت ⚠️', 'format', style='danger')],
-            [Button.inline('༺ قاسـم 👨🏼‍💻 ༻', 'button0', style='primary')]
+            [types.KeyboardButtonCallback('👁️ رشق مشاهدات', b'buttonn511')],
+            [
+                types.KeyboardButtonCallback('🕹️ تحكم خاص', b'btp'), 
+                types.KeyboardButtonCallback('🔍 فحص الحسابات', b'tst')
+            ],
+            [
+                types.KeyboardButtonCallback('📑 آخر 6 رسائل', b'f4or3wa1rd'), 
+                types.KeyboardButtonCallback('✉️ إرسال رسالة', b's6e43n6d')
+            ],
+            [
+                types.KeyboardButtonCallback('🖱️ نقر زر شفاف', b'ba4utt2on'), 
+                types.KeyboardButtonCallback('🔢 عدد الحسابات', b"bbuttoon08")
+            ],
+            [types.KeyboardButtonCallback('⚠️ مسح بيانات البوت ⚠️', b'format')],
+            [types.KeyboardButtonCallback('༺ قاسم 👨🏼‍💻 ༻', b'button0')]
         ]
 
-        await bot.send_message(chat, "**هلا بالسلطان الوالي:**", buttons=buttons)
+        await bot.send_message(chat, "**هلا بالسلطان الوالي ✅**", buttons=buttons)
+
 
 
 @bot.on(events.CallbackQuery(pattern='da3mkom'))
