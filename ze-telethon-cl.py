@@ -112,56 +112,53 @@ async def start(event):
         # قائمة الأزرار بتنسيق التحديث الجديد API 9.4
         buttons = [
             [
-                Button.inline('➕ إضافة رقـم', 'button1', color='blue'), 
-                Button.inline('🗑️ حـذف رقـم', 'delete', color='red')
+                Button.inline('➕ إضافة رقـم', 'button1'), 
+                Button.inline('🗑️ حـذف رقـم', 'delete')
             ],
-            [Button.inline('⚙️ تعيين البوت الأساسي', 'ububo', color='gray')],
+            [Button.inline('⚙️ تعيين البوت الأساسي', 'ububo')],
             [
-                Button.inline('▶️ بــــدء التجميع', 'button3', color='green'), 
-                Button.inline('⏹️ إيقاف التجميع', 'button4', color='red')
-            ],
-            [
-                Button.inline('💸 تحويل النقاط', 'button5', color='orange'), 
-                Button.inline('📊 عـدد النقاط', 'button6', color='orange')
+                Button.inline('▶️ بــــدء التجميع', 'button3'), 
+                Button.inline('⏹️ إيقاف التجميع', 'button4')
             ],
             [
-                Button.inline('🔓 فك الحظر', 'unblock', color='cyan'), 
-                Button.inline('🚫 حظر البوت', 'button21', color='black')
+                Button.inline('💸 تحويل النقاط', 'button5'), 
+                Button.inline('📊 عـدد النقاط', 'button6')
             ],
             [
-                Button.inline('🧹 مغادرة القنوات', 'buttton11', color='yellow'), 
-                Button.inline('🎁 الهدية اليومية', 'a6gi2ft', color='pink')
-            ],
-            [Button.inline('✨ بوت دعمكم المطور', 'da3mkom', color='purple')],
-            [
-                Button.inline('🗳️ رشق تصويت', 'button7', color='blue'), 
-                Button.inline('🤖 تفعيل بوت', 'button8', color='blue')
+                Button.inline('🔓 فك الحظر', 'unblock'), 
+                Button.inline('🚫 حظر البوت', 'button21')
             ],
             [
-                Button.inline('📢 رشق قناة', 'buttton311', color='blue'), 
-                Button.inline('🚶 مغادرة قناة', 'buttton251', color='red')
+                Button.inline('🧹 مغادرة القنوات', 'buttton11'), 
+                Button.inline('🎁 الهدية اليومية', 'a6gi2ft')
             ],
-            [Button.inline('👁️ رشق مشاهدات', 'buttonn511', color='blue')],
+            [Button.inline('✨ بوت دعمكم المطور', 'da3mkom')],
             [
-                Button.inline('🕹️ تحكم خاص', 'btp', color='gray'), 
-                Button.inline('🔍 فحص الحسابات', 'tst', color='gray')
-            ],
-            [
-                Button.inline('📑 آخر 6 رسائل', 'f4or3wa1rd', color='white'), 
-                Button.inline('✉️ إرسال رسالة', 's6e43n6d', color='white')
+                Button.inline('🗳️ رشق تصويت', 'button7'), 
+                Button.inline('🤖 تفعيل بوت', 'button8')
             ],
             [
-                Button.inline('🖱️ نقر زر شفاف', 'ba4utt2on', color='indigo'), 
-                Button.inline('🔢 عدد الحسابات', "bbuttoon08", color='indigo')
+                Button.inline('📢 رشق قناة', 'buttton311'), 
+                Button.inline('🚶 مغادرة قناة', 'buttton251')
             ],
-            [Button.inline('⚠️ مسح بيانات البوت ⚠️', 'format', color='red')],
-            [Button.inline('༺قاسـم 👨🏼‍💻༻', 'button0', color='gold')]
+            [Button.inline('👁️ رشق مشاهدات', 'buttonn511')],
+            [
+                Button.inline('🕹️ تحكم خاص', 'btp'), 
+                Button.inline('🔍 فحص الحسابات', 'tst')
+            ],
+            [
+                Button.inline('📑 آخر 6 رسائل', 'f4or3wa1rd'), 
+                Button.inline('✉️ إرسال رسالة', 's6e43n6d')
+            ],
+            [
+                Button.inline('🖱️ نقر زر شفاف', 'ba4utt2on'), 
+                Button.inline('🔢 عدد الحسابات', "bbuttoon08")
+            ],
+            [Button.inline('⚠️ مسح بيانات البوت ⚠️', 'format')],
+            [Button.inline('༺قاسـم 👨🏼‍💻 ༻', 'button0')]
         ]
 
-        # إرسال القائمة المحدثة
-        await bot.send_message(chat, '''**تـم تـحديث الـقائمة بـنجاح ✅
-إصـدار الـبوت: API 9.4**''', buttons=buttons)
-
+        await bot.send_message(chat, "**تـم تشغيل التحكم بنجاح ✅**", buttons=buttons)
 
 
 @bot.on(events.CallbackQuery(pattern='da3mkom'))
