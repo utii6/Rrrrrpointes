@@ -3,16 +3,37 @@ import threading
 import os
 import json
 import asyncio
-import datetime
 import time
 import pyfiglet
 import requests
 from flask import Flask
+from datetime import datetime
 from telethon import TelegramClient, events, Button, functions, types
 from telethon.tl.types import KeyboardButton, ReplyKeyboardMarkup, KeyboardButtonCallback
 from telethon.tl.custom import Conversation
 from telethon.errors import ChatWriteForbiddenError, UserIsBlockedError
+
+# استدعاء ملفات المشروع المحلية
 from zekalb import *
+
+#------------------------ vars -------------------------#
+A = '\033[1;34m'
+X = '\033[1;33m'
+
+logo = pyfiglet.figlet_format('* ze      *')
+print(X+logo)
+print(A+'═'*60)
+
+filename = 'ze.json'
+
+# تعريف الوقت الآن بدون أخطاء
+datee = datetime.now()
+
+bot = TelegramClient('bot', api_id=Config.APP_ID, api_hash=Config.API_HASH).start(bot_token=Config.TG_BOT_TOKEN)
+
+#------------------ Main Admin ID ---------------------# 
+DEVELOPER_ID = 5917983447 
+
 #----------------------------------------------#
 
 
